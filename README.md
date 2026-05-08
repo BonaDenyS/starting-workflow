@@ -1,8 +1,6 @@
-# Knowledge Base
+# CorpX Knowledge Base
 
-A static knowledge base website built with [11ty](https://www.11ty.dev/) and automatically deployed to GitHub Pages via GitHub Actions.
-
-## Links
+## Project Links
 
 | | URL |
 |---|---|
@@ -11,16 +9,20 @@ A static knowledge base website built with [11ty](https://www.11ty.dev/) and aut
 
 ## CI/CD Pipeline
 
-This project uses a GitHub Actions workflow with three jobs:
+Three-job GitHub Actions workflow in `.github/workflows/ci-cd.yml`:
 
-- **Test** — installs dependencies, runs linter and tests
-- **Build** — builds the 11ty static site and uploads the artifact
-- **Deploy** — deploys to GitHub Pages and creates a summary issue
-
-## Workflow Triggers
-
-| Trigger | Jobs Run |
+| Job | What it does |
 |---|---|
-| `push` to `main` | Test → Build → Deploy |
-| `pull_request` to `main` | Test → Build |
-| `workflow_dispatch` | Test → Build → Deploy |
+| **Test** | Lint (JS + SCSS + Markdown) + URL checker |
+| **Build** | `npm run prod` → uploads `_site/` as Pages artifact |
+| **Deploy** | Deploys to GitHub Pages + creates summary issue |
+
+## Required Repository Variables
+
+Set these under **Settings → Secrets and variables → Actions → Variables**:
+
+| Variable | Example value |
+|---|---|
+| `NODE_ENV` | `production` |
+| `SITE_TITLE` | `Knowledge Base` |
+| `URL_CHECKER_TIMEOUT` | `30` |
