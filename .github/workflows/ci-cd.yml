@@ -56,7 +56,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --include=dev
 
       - name: Run linter
         run: npm run lint
@@ -95,7 +95,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --include=dev
 
       - name: Build 11ty site
         env:
